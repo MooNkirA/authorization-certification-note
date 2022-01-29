@@ -15,6 +15,7 @@
     <modules>
         <module>spring-security-5.1.x</module>
         <module>spring-security-boot-2.1.x</module>
+        <module>spring-cloud-security-greenwich</module>
     </modules>
 
 </project>
