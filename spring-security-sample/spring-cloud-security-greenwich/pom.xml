@@ -18,6 +18,7 @@
 
     <modules>
         <module>spring-security-uaa</module>
+        <module>spring-security-order</module>
     </modules>
 
     <properties>
