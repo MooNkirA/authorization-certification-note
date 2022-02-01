@@ -18,6 +18,7 @@ import org.springframework.security.oauth2.provider.token.AuthorizationServerTok
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 import java.util.Arrays;
 
@@ -44,6 +45,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtAccessTokenConverter jwtAccessTokenConverter;
 
     /**
      * 用来配置客户端详情服务 ClientDetailsService，客户端详情信息在此方法中进行初始化，
@@ -78,6 +82,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         service.setClientDetailsService(clientDetailsService); // 客户端详情服务
         service.setSupportRefreshToken(true); // 支持刷新令牌
         service.setTokenStore(tokenStore); // 令牌存储策略
+
+        /* JWT 令牌增强 */
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(jwtAccessTokenConverter));
+        service.setTokenEnhancer(tokenEnhancerChain);
+
         service.setAccessTokenValiditySeconds(7200); // 令牌默认有效期2小时
         service.setRefreshTokenValiditySeconds(259200); // 刷新令牌默认有效期3天
         return service;
@@ -119,4 +129,5 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .checkTokenAccess("permitAll()") // oauth/check_token公开
                 .allowFormAuthenticationForClients(); // 表单认证（申请令牌）
     }
+
 }

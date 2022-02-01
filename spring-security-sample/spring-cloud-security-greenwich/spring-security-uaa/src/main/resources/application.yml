@@ -12,7 +12,7 @@ spring:
     name: uaa-service
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/user_db?useUnicode=true
+    url: jdbc:mysql://localhost:3306/user_db?useUnicode=true&useSSL=false&characterEncoding=UTF-8
     username: root
     password: 123456
   freemarker:
