@@ -1,5 +1,6 @@
 package com.moon.springcloud.security.uaa.service;
 
+import com.alibaba.fastjson.JSON;
 import com.moon.springcloud.security.uaa.dao.UserDao;
 import com.moon.springcloud.security.uaa.model.UserDO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +47,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         List<String> permissions = userDao.findPermissionsByUserId(user.getId());
         // 权限集合转数组
         String[] permissionArray = permissions.toArray(new String[permissions.size()]);
+        // 将用户对象转成json字符串，设置到 username 属性中
+        String principal = JSON.toJSONString(user);
 
-        return User.withUsername(user.getUsername())
+        return User.withUsername(principal) // 设置用户对象的 json 字符串
                 .password(user.getPassword()) // 设置密码
                 .authorities(permissionArray) // 设置权限
                 .build();

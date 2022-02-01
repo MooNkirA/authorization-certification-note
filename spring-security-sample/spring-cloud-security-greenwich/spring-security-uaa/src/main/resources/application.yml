@@ -33,13 +33,13 @@ spring:
   resources:
     add-mappings: false
 
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://localhost:53000/eureka/
-#  instance:
-#    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
-#    preferIpAddress: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:53000/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+    preferIpAddress: true
 
 feign:
   compression:

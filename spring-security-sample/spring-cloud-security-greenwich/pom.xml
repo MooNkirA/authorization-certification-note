@@ -19,6 +19,8 @@
     <modules>
         <module>spring-security-uaa</module>
         <module>spring-security-order</module>
+        <module>spring-security-discovery</module>
+        <module>spring-security-gateway</module>
     </modules>
 
     <properties>

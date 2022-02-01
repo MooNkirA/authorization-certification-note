@@ -1,32 +1,11 @@
 server:
-  port: 53021
-  servlet:
-    context-path: /order
-  tomcat:
-    protocol_header: x-forwarded-proto
-    remote_ip_header: x-forwarded-for
-  use-forward-headers: true
+  port: 53010
 
 spring:
   application:
-    name: order-service
-  freemarker:
-    charset: UTF-8
-    content-type: text/html
-    enabled: true
-    request-context-attribute: rc
-    suffix: .html
-  http:
-    encoding:
-      charset: UTF-8
-      enabled: true
-      force: true
+    name: gateway-server
   main:
     allow-bean-definition-overriding: true
-  mvc:
-    throw-exception-if-no-handler-found: true
-  resources:
-    add-mappings: false
 
 eureka:
   client:
@@ -50,12 +29,25 @@ feign:
   hystrix:
     enabled: true
 
+zuul:
+  add-host-header: true
+  ignoredServices: '*'
+  retryable: true
+  # 统一认证服务（UAA）与统一用户服务都是网关下微服务，需要在网关上新增路由配置
+  routes:
+    order-service:
+      path: /order/**
+      stripPrefix: false
+    uaa-service:
+      path: /uaa/**
+      stripPrefix: false
+  sensitiveHeaders: '*'
+
 logging:
   level:
     org:
-      springframework:
-        web: info
-    root: debug
+      springframework: info
+    root: info
 
 management:
   endpoints:
