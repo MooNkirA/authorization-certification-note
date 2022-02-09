@@ -198,6 +198,154 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "请求订单资源服务",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJleHAiOjE2NDM2ODU0MDksImF1dGhvcml0aWVzIjpbInAxIiwicDMiXSwianRpIjoiOTU2ZjY0ZWUtNTA4My00NDQzLThlZjItMDE5NjQzMDFmZTQ0IiwiY2xpZW50X2lkIjoiYzEifQ.6ofNxI4zbD9iLDk4GPYZPE2gvvipvV9iPWu50vbsSSg",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:53021/order/check/p1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "53021",
+					"path": [
+						"order",
+						"check",
+						"p1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "校验令牌",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJleHAiOjE2NDM2ODU0MDksImF1dGhvcml0aWVzIjpbInAxIiwicDMiXSwianRpIjoiOTU2ZjY0ZWUtNTA4My00NDQzLThlZjItMDE5NjQzMDFmZTQ0IiwiY2xpZW50X2lkIjoiYzEifQ.6ofNxI4zbD9iLDk4GPYZPE2gvvipvV9iPWu50vbsSSg",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:53020/uaa/oauth/check_token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "53020",
+					"path": [
+						"uaa",
+						"oauth",
+						"check_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "网关申请令牌-密码模式",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "c1",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:53010/uaa/oauth/token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "53010",
+					"path": [
+						"uaa",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "网关请求订单资源服务",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiLCJST0xFX0FQSSJdLCJleHAiOjE2NDM3MTc1NzUsImF1dGhvcml0aWVzIjpbInAxIiwicDMiXSwianRpIjoiY2IwMWY3MmEtMThiNC00ZjI5LTkwNjMtNTIwMWNlYTc0OTQ5IiwiY2xpZW50X2lkIjoiYzEifQ.OxEVkGzu1VD05DXus8gM7JwcTLXvWukPhK4-Yc9NTuE",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:53010/order/check/p2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "53010",
+					"path": [
+						"order",
+						"check",
+						"p2"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
